@@ -20,6 +20,7 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   const getContacts = await listContacts();
   const index = getContacts.findIndex((contact) => contact.id === contactId);
+  const contacts = getContacts.find((contact) => contact.id === contactId);
 
   if (index === -1) {
     return null;
@@ -27,7 +28,7 @@ async function removeContact(contactId) {
 
   const result = getContacts.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(getContacts, null, 2));
-  return result;
+  return contacts;
 }
 
 async function addContact(name, email, phone) {
