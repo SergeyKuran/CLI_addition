@@ -28,7 +28,7 @@ async function removeContact(contactId) {
 
   const result = getContacts.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(getContacts, null, 2));
-  return contacts;
+  return contacts || null;
 }
 
 async function addContact(name, email, phone) {
